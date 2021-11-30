@@ -1,11 +1,20 @@
 import React, { Component } from 'react'
-import { View, Text, ImageBackground, StyleSheet, FlatList, TouchableOpacity, Platform } from 'react-native'
+import { 
+    View, 
+    Text, 
+    ImageBackground, 
+    StyleSheet, 
+    FlatList, 
+    TouchableOpacity, 
+    Platform 
+} from 'react-native'
 import moment from 'moment'
 import 'moment/locale/pt-br'
 import Icon from 'react-native-vector-icons/FontAwesome'
 import commonStyles from '../commonStyles'
 
 import Task from '../components/Task'
+import AddTask from './AddTask'
 
 const todayImage = require('../../assets/imgs/today.jpg')
 
@@ -13,6 +22,7 @@ export default class TaskList extends Component {
 
     state = {
         showDoneTasks: true,
+        showAddTask: true,
         visibleTasks: [],
         tasks: [{
             id: Math.random(),
@@ -63,6 +73,8 @@ export default class TaskList extends Component {
         const today = moment().locale('pt-br').format('ddd, D [de] MMMM')
         return (
             <View style={styles.container}>
+                <AddTask isVisible={this.state.showAddTask}
+                    onCancel={() => this.setState({showAddTask:false})}/>
                 <ImageBackground 
                     source={todayImage}
                     style={styles.background}>
