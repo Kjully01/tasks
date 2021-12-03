@@ -1,3 +1,4 @@
+//import { Swipeable } from 'react-native-gesture-handler';
 /**
  * @format
  */
