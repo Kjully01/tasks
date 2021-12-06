@@ -7,7 +7,7 @@ import {
     TouchableOpacity
 } from 'react-native'
 
-//import Swipeable from 'react-native-gesture-handler/Swipeable'
+import Swipeable from 'react-native-gesture-handler/Swipeable'
 import Icon from "react-native-vector-icons/FontAwesome"
 import moment from "moment"
 import 'moment/locale/pt-br'
@@ -22,15 +22,15 @@ export default props =>{
 
     const formattedDate = moment(date).locale('pt-br').format('ddd, D [de] MMMM')
 
-/*     const getRightActions= () => {
+    const getRightActions= () => {
         <TouchableOpacity style={styles.right}>
             <Icon name='trash' size={30} color={'#FFF'}/>
         </TouchableOpacity>
     }
- */
+
     return (
-//        <Swipeable
-//          renderRightActions={getRightActions}>
+        <Swipeable
+         renderRightActions={getRightActions}>
             <View style={styles.container}>
                 <TouchableWithoutFeedback
                     onPress={() => props.toggleTask(props.id)}>
@@ -43,7 +43,7 @@ export default props =>{
                     <Text style={styles.date}>{formattedDate}</Text>
                 </View>
             </View>
-//        </Swipeable>
+        </Swipeable>
     )
 }
 
