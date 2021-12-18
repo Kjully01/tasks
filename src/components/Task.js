@@ -23,9 +23,11 @@ export default props =>{
     const formattedDate = moment(date).locale('pt-br').format('ddd, D [de] MMMM')
 
     const getRightActions= () => {
-        <TouchableOpacity style={styles.right}>
-            <Icon name='trash' size={30} color={'#FFF'}/>
-        </TouchableOpacity>
+        return(
+            <TouchableOpacity style={styles.right}>
+                <Icon name='trash' size={30} color={'#FFF'}/>
+            </TouchableOpacity>
+        )
     }
 
     return (
