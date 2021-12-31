@@ -16,14 +16,18 @@ import AuthInput from '../components/AuthInput'
 
 import { server, showError, showSuccess } from '../common'
 
+const initialState = {
+    name: '',
+    email: '',
+    password: '',
+    confirmPassword: '',
+    stageNew: false
+}
+
 export default class Auth extends Component {
 
     state = {
-        name: '',
-        email: '',
-        password: '',
-        confirmPassword: '',
-        stageNew: false
+        ...initialState
     }
 
     signinOrSignup = () => {
@@ -45,7 +49,7 @@ export default class Auth extends Component {
             })
 
             showSuccess('Usuário Cadastrado!')
-            this.setState({stageNew: false})
+            this.setState({...initialState})
         }catch(e){
             showError(e)
         }
