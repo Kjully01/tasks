@@ -13,8 +13,8 @@ const Stack = createStackNavigator();
 const DrawerNavigator = props => {
     return (
         <Drawer.Navigator
-        drawerStyle={{backgroundColor: 'transparent'}}>
-            <Drawer.Screen name="Today" options={{ title: 'Hoje' }}>
+        screenOptions={{ headerShown: false }}> 
+         <Drawer.Screen name="Today" options={{ title: 'Hoje' }}>
                 {props => <TaskList {...props} title='Hoje' daysAhead={0} />}
             </Drawer.Screen>
             <Drawer.Screen name="Tomorrow" options={{ title: 'Amanhã' }}>
