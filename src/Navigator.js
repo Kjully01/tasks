@@ -1,5 +1,4 @@
 import React from 'react';
-import {createAppContainer, createSwitchNavigator} from 'react-navigation'
 import {createDrawerNavigator} from '@react-navigation/drawer'
 import { createStackNavigator } from '@react-navigation/stack'
 import { NavigationContainer } from '@react-navigation/native'
@@ -13,8 +12,8 @@ const Stack = createStackNavigator();
 const DrawerNavigator = props => {
     return (
         <Drawer.Navigator
-        screenOptions={{ headerShown: false }}> 
-         <Drawer.Screen name="Today" options={{ title: 'Hoje' }}>
+          screenOptions={{ headerShown: false }}> 
+            <Drawer.Screen name="Today" options={{ title: 'Hoje' }}>
                 {props => <TaskList {...props} title='Hoje' daysAhead={0} />}
             </Drawer.Screen>
             <Drawer.Screen name="Tomorrow" options={{ title: 'Amanhã' }}>
