@@ -6,13 +6,40 @@ import { NavigationContainer } from '@react-navigation/native'
 import Auth from './screens/Auth'
 import TaskList from './screens/TaskList'
 
+import Menu from './screens/Menu'
+import commonStyles from './commonStyles'
+
+/* const menuConfig = {
+    initialRouteName: 'Today',
+    contentComponent: Menu,
+    contentOptions: {
+        labelStyle: {
+            fontFamily: commonStyles.fontFamily,
+            fontWeight: 'normal',
+            fontSize: 20
+        },
+        activeLabelStyle: {
+            color: '#080',
+            fontWeight: 'bold'
+        }
+    }
+} */
+
 const Drawer = createDrawerNavigator()
 const Stack = createStackNavigator();
 
 const DrawerNavigator = props => {
     return (
-        <Drawer.Navigator
-          screenOptions={{ headerShown: false }}> 
+        //<Drawer.Navigator drawerContent={props => <Menu {...props}/>}
+        <Drawer.Navigator  
+          initialRouteName='Today'
+          //drawerContent={Menu}
+          drawerContent={props => <Menu {...props}/>}
+          screenOptions={{ 
+              headerShown: false, 
+              drawerActiveTintColor: '#080',
+            }}
+          > 
             <Drawer.Screen name="Today" options={{ title: 'Hoje' }}>
                 {props => <TaskList {...props} title='Hoje' daysAhead={0} />}
             </Drawer.Screen>
