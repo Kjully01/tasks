@@ -1,5 +1,5 @@
 import React from 'react';
-import {createDrawerNavigator} from '@react-navigation/drawer'
+import {createDrawerNavigator, DrawerItem} from '@react-navigation/drawer'
 import { createStackNavigator } from '@react-navigation/stack'
 import { NavigationContainer } from '@react-navigation/native'
 
@@ -26,15 +26,18 @@ import commonStyles from './commonStyles'
 } */
 
 const Drawer = createDrawerNavigator()
-const Stack = createStackNavigator();
+const Stack = createStackNavigator()
 
 const DrawerNavigator = props => {
+   //console.warn(props.route.params.email)
+   //console.warn(props)
+   const email = props.route.params.email
+   const name = props.route.params.name
+
     return (
-        //<Drawer.Navigator drawerContent={props => <Menu {...props}/>}
         <Drawer.Navigator  
           initialRouteName='Today'
-          //drawerContent={Menu}
-          drawerContent={props => <Menu {...props}/>}
+          drawerContent={ (props) => <Menu {...props} email={email} name={name}/>}
           screenOptions={{ 
               headerShown: false, 
               drawerActiveTintColor: '#080',

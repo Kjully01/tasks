@@ -11,30 +11,87 @@ import {
     Switch
 } from 'react-native-paper'
 import { Gravatar } from 'react-native-gravatar'
-import {DrawerContentScrollView, DrawerItem, DrawerItemList} from '@react-navigation/drawer'
+import {DrawerContentScrollView, 
+        DrawerItem, 
+        DrawerItemList, 
+        TouchableOpacity
+} from '@react-navigation/drawer'
 import { View, Text, StyleSheet } from 'react-native'
+import commonStyles from '../commonStyles'
 
 export default props => {
+    //console.warn(props)
     return (
         <DrawerContentScrollView>
-            <View>
-                <Avatar.Image
+            <View style={styles.header}>
+                <Text style={styles.title}>Tasks</Text>
+                <Gravatar style={styles.avatar}
+                    options={{
+                        email: props.email,
+                        secure: true
+                    }}
+                />
+                {/* <Avatar.Image
+                    style={styles.avatar}
                     source={{
                         uri:'https://cdn.pixabay.com/photo/2014/03/24/17/19/teacher-295387_960_720.png' 
                     }}
-                    size={50}
-                />
-                <Title></Title> 
-               {/*  <Text>{this.props.navigation.getParam()}</Text> */}
+                /> */}
+                <View style={styles.userInfo}>
+                    <Text style={styles.name}>
+                        {props.name}
+                    </Text>
+                    <Text style={styles.email}>
+                        {props.email}
+                    </Text>
+                </View>
             </View>
             <DrawerItemList {...props}/>
+            <DrawerItem
+                    icon={({color, size}) => (
+                        <Icon name='power-off'
+                            size={size}
+                            color={color}/>
+                    )}
+                    label='Sign out'
+                    onPress={() => console.warn(props)}
+                />
         </DrawerContentScrollView>
     )
 }
 
 const styles = StyleSheet.create({
     header: {
-
+        borderBottomWidth: 1,
+        borderColor: '#DDD'
+    },
+    title:{
+        color: '#000',
+        fontFamily: commonStyles.fontFamily,
+        fontSize: 30,
+        padding: 10,
+        paddingTop: 10
+    },
+    avatar: {
+        width: 60,
+        height: 60,
+        borderWidth: 3,
+        borderRadius: 30,
+        margin: 10,
+    },
+    userInfo: {
+        marginLeft: 10,
+    },
+    name: {
+        fontFamily: commonStyles.fontFamily,
+        fontSize: 20,
+        marginBottom: 5
+    },
+    email: {
+        fontFamily: commonStyles.fontFamily,
+        fontSize: 15,
+        color: commonStyles.colors.subText,
+        marginBottom: 5
     }
 })
 
