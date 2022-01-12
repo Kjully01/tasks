@@ -1,26 +1,25 @@
 import React from 'react'
-//import {ScrollView} from 'react-native'
-import Icon from "react-native-vector-icons/FontAwesome"
-import {
-    Avatar,
-    Title,
-    Caption,
-    Paragraph,
-    Drawer,
-    TouchableRipple,
-    Switch
-} from 'react-native-paper'
+import { View, Text, StyleSheet, TouchableOpacity } from 'react-native'
 import { Gravatar } from 'react-native-gravatar'
 import {DrawerContentScrollView, 
         DrawerItem, 
-        DrawerItemList, 
-        TouchableOpacity
+        DrawerItemList
 } from '@react-navigation/drawer'
-import { View, Text, StyleSheet } from 'react-native'
+
+import axios from 'axios'
+import AsyncStorage from '@react-native-community/async-storage'
+import Icon from "react-native-vector-icons/FontAwesome"
+
 import commonStyles from '../commonStyles'
 
 export default props => {
-    //console.warn(props)
+
+    const logout = () => {
+        delete axios.defaults.headers.common['Authorization']
+        AsyncStorage.removeItem('userData')
+        props.navigation.navigate('Auth')
+    }
+
     return (
         <DrawerContentScrollView>
             <View style={styles.header}>
@@ -31,12 +30,6 @@ export default props => {
                         secure: true
                     }}
                 />
-                {/* <Avatar.Image
-                    style={styles.avatar}
-                    source={{
-                        uri:'https://cdn.pixabay.com/photo/2014/03/24/17/19/teacher-295387_960_720.png' 
-                    }}
-                /> */}
                 <View style={styles.userInfo}>
                     <Text style={styles.name}>
                         {props.name}
@@ -45,17 +38,15 @@ export default props => {
                         {props.email}
                     </Text>
                 </View>
+                <TouchableOpacity onPress={logout}>
+                    <View style={styles.logoutIcon}>
+                        <Icon name='sign-out'
+                        size={30}
+                        color={'#800'}/>
+                    </View>
+                </TouchableOpacity>
             </View>
             <DrawerItemList {...props}/>
-            <DrawerItem
-                    icon={({color, size}) => (
-                        <Icon name='power-off'
-                            size={size}
-                            color={color}/>
-                    )}
-                    label='Sign out'
-                    onPress={() => console.warn(props)}
-                />
         </DrawerContentScrollView>
     )
 }
@@ -92,6 +83,10 @@ const styles = StyleSheet.create({
         fontSize: 15,
         color: commonStyles.colors.subText,
         marginBottom: 5
+    },
+    logoutIcon: {
+        marginLeft: 10,
+        margin: 5
     }
 })
 

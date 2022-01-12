@@ -10,7 +10,6 @@ import AsyncStorage from '@react-native-community/async-storage'
 
 export default class AuthOrApp extends Component {
 
-    //async componentDidMount() {
     componentDidMount = async () => {
         const userDataJson = await AsyncStorage.getItem('userData')
         let userData = null
@@ -24,8 +23,9 @@ export default class AuthOrApp extends Component {
         if(userData && userData.token) {
             axios.defaults.headers.common['Authorization'] = `bearer ${userData.token}`
             this.props.navigation.navigate('Home', userData)
-        } else {
+        } else {       
             this.props.navigation.navigate('Auth')
+            console.warn(this.props.userData)
         }
     }
     

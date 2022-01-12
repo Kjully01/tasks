@@ -8,30 +8,11 @@ import Auth from './screens/Auth'
 import TaskList from './screens/TaskList'
 
 import Menu from './screens/Menu'
-import commonStyles from './commonStyles'
-
-/* const menuConfig = {
-    initialRouteName: 'Today',
-    contentComponent: Menu,
-    contentOptions: {
-        labelStyle: {
-            fontFamily: commonStyles.fontFamily,
-            fontWeight: 'normal',
-            fontSize: 20
-        },
-        activeLabelStyle: {
-            color: '#080',
-            fontWeight: 'bold'
-        }
-    }
-} */
 
 const Drawer = createDrawerNavigator()
 const Stack = createStackNavigator()
 
 const DrawerNavigator = props => {
-   //console.warn(props.route.params.email)
-   //console.warn(props)
    const email = props.route.params.email
    const name = props.route.params.name
 
@@ -63,6 +44,7 @@ const DrawerNavigator = props => {
 const AuthNavigator = () => {
     return (
         <Stack.Navigator screenOptions={{ headerShown: false }}>
+            {/* <Stack.Screen name="Auth" component={Auth} /> */}
             <Stack.Screen name="AuthOrApp" component={AuthOrApp}/>
             <Stack.Screen name="Auth" component={Auth} />
             <Stack.Screen name="Home" component={DrawerNavigator} />
@@ -79,27 +61,3 @@ const Navigator = () => {
 };
  
 export default Navigator;
-
-/* import {createAppContainer, createSwitchNavigator} from 'react-navigation'
-import {createDrawerNavigator} from '@react-navigation/drawer'
-
-import Auth from './screens/Auth'
-import TaskList from './screens/TaskList'
-
-const Drawer = createDrawerNavigator
-
-const mainRoutes ={
-    Auth: {
-        name: 'Auth',
-        screen: Auth
-    },
-    Home: {
-        name: 'Home',
-        screen: TaskList
-    }
-}
-
-const mainNavigator = createSwitchNavigator(mainRoutes, {initialRouteName: 'Auth'})
-
-
-export default createAppContainer(mainNavigator) */
