@@ -17,7 +17,7 @@ export default props => {
     const logout = () => {
         delete axios.defaults.headers.common['Authorization']
         AsyncStorage.removeItem('userData')
-        props.navigation.navigate('Auth')
+        props.navigation.navigate('AuthOrApp')
     }
 
     return (

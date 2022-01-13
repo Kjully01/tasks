@@ -25,7 +25,6 @@ export default class AuthOrApp extends Component {
             this.props.navigation.navigate('Home', userData)
         } else {       
             this.props.navigation.navigate('Auth')
-            console.warn(this.props.userData)
         }
     }
     
